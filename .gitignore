@@ -1,0 +1,8 @@
+# .gitignore
+
+# Database dan Cache
+*.db
+__pycache__/
+
+# Virtual Environment
+venv/
