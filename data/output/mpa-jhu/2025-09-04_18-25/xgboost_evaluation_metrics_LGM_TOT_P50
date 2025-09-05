@@ -1,0 +1,23 @@
+Target        : LGM_TOT_P50
+Training time : 64.5068109035492 s
+
+--- Model & Training Parameters ---
+Scaler        : RobustScaler
+Model         : xgboost
+Number of estimators : 800
+Max depth            : 10
+Learning rate        : 0.028999999999999998
+L2 regularization    : 0.7167
+L1 regularization    : 0.2245
+Colsample by tree    : 0.94
+
+--- Evaluation Metrics ---
+RMSE          : 0.18552795289878565
+NRMSE         : 0.03260466140757065
+MAE           : 0.11390868254261907
+Bias          : -2.8525706526691602e-05
+Sigma         : LGM_TOT_P50    0.185528
+dtype: float64
+Eta           : LGM_TOT_P50    0.016185
+dtype: float64
+R2            : 0.9178359422093136

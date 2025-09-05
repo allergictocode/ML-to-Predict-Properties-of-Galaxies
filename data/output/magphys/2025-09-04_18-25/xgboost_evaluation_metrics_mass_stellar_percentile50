@@ -1,0 +1,23 @@
+Target        : mass_stellar_percentile50
+Training time : 16.76784062385559 s
+
+--- Model & Training Parameters ---
+Scaler        : RobustScaler
+Model         : xgboost
+Number of estimators : 900
+Max depth            : 6
+Learning rate        : 0.06999999999999999
+L2 regularization    : 0.1608
+L1 regularization    : 0.8506
+Colsample by tree    : 0.71
+
+--- Evaluation Metrics ---
+RMSE          : 0.08015231712663932
+NRMSE         : 0.017173801405456296
+MAE           : 0.051094169643853195
+Bias          : 0.00243829119799468
+Sigma         : mass_stellar_percentile50    0.080115
+dtype: float64
+Eta           : mass_stellar_percentile50    0.014237
+dtype: float64
+R2            : 0.9786347120093337

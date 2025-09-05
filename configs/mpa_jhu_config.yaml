@@ -1,0 +1,102 @@
+project_name: SDSS+AllWISE MPA-JHU Dataset
+label: MPA-JHU
+csv_path: ./data/input/mpajhu.csv
+output_dir: ./data/output/mpa-jhu
+feature_columns:
+- r
+- u-g
+- g-r
+- r-i
+- i-z
+- z-w1
+- w1-w2
+- w2-w3
+target_columns:
+- LGM_TOT_P50
+- SFR_TOT_P50
+scaler_cls: StandardScaler
+models:
+- xgboost
+val_split: 0.1
+k_fold: 5
+tuning:
+  n_trials: 30
+  storage_db: sqlite:///mpa_jhu.db
+targets:
+  SFR_TOT_P50:
+    ann:
+      layers:
+      - 96
+      - 128
+      - 96
+      - 80
+      - 48
+      activation: elu
+      regularizer: null
+      optimizer: rmsprop
+      learning_rate: 0.00011288326498993341
+      batch_size: 32
+      epochs: 900
+      patience: 25
+    wdnn:
+      layers:
+      - 112
+      - 96
+      - 32
+      - 96
+      activation: relu
+      regularizer: null
+      optimizer: rmsprop
+      learning_rate: 0.00011572756412288465
+      batch_size: 64
+      epochs: 700
+      patience: 10
+    xgboost:
+      eta: 0.032
+      n_estimators: 800
+      max_depth: 10
+      reg_lambda: 0.1307
+      reg_alpha: 0.6787000000000001
+      colsample_bytree: 0.8500000000000001
+    catboost:
+      iterations: 1800
+      depth: 10
+      learning_rate: 0.05323725282124694
+  LGM_TOT_P50:
+    ann:
+      layers:
+      - 128
+      - 96
+      - 112
+      - 80
+      - 128
+      activation: relu
+      regularizer: l2
+      optimizer: sgd
+      learning_rate: 0.003206298131994693
+      batch_size: 32
+      epochs: 1000
+      patience: 30
+    wdnn:
+      layers:
+      - 112
+      - 96
+      - 96
+      activation: elu
+      regularizer: null
+      optimizer: rmsprop
+      learning_rate: 0.00018911068696637922
+      batch_size: 80
+      epochs: 500
+      patience: 25
+    xgboost:
+      eta: 0.024
+      n_estimators: 1000
+      max_depth: 10
+      reg_lambda: 0.9464
+      reg_alpha: 0.12430000000000001
+      colsample_bytree: 0.81
+    catboost:
+      iterations: 2000
+      depth: 11
+      learning_rate: 0.04437318042938638

@@ -1,9 +1,105 @@
-# ML-to-Predict-Properties-of-Galaxies
-Bachelor Thesis: Exploring Machine Learning Architecture for Predicting Stellar Mass and Star Formation Rate of Galaxies from SDSS, AllWISE, and GAMA Data
+# ML Models for Predicting Galaxy Properties
 
-Abstract:
-The exponential growth of astronomical data has driven the need for efficient methods to predict galactic properties such as star formation rate (SFR) and stellar mass (SM), as traditional approaches such as spectral energy distribution (SED) fitting sed fitting requires greater computing power for massive datasets. This study aims to evaluate and compare four machine learning architectures, including Artificial Neural Network (ANN), Wide and Deep Neural Network (WDNN), XGBoost, and CatBoost, in predicting these properties solely from photometric data. The models were trained using two datasets: optical-infrared data from SDSS and AllWISE with targets from the MPA-JHU DR8 catalog, and 21-band panchromatic data from the Galaxy And Mass Assembly (GAMA) with targets from the MAGPHYS catalog.
+A machine learning pipeline for predicting galactic properties using various models including XGBoost, CatBoost, Artificial Neural Networks (ANN), and Wide & Deep Neural Networks (WDNN).
 
-The results show that the gradient boosting models (CatBoost and XGBoost) offer the best balance between accuracy and efficiency. These models achieve high precision, especially on GAMA data (standard deviation error, σ_SM ≈ 0.07 dex and σ_SFR ≈ 0.16 dex), with significantly shorter training times compared to ANN and WDNN. Consistently, stellar mass was found to be easier to predict than SFR, and the use of GAMA 21-band panchromatic data significantly improved prediction accuracy for all models. This study confirms that ML methods, particularly gradient boosting, are highly accurate, efficient, and crucial tools for analyzing galaxy properties in future large-scale astronomical surveys.
+## Overview
 
-Keywords: Machine Learning, Galactic Properties, Photometry.
+This project implements machine learning models to predict galactic properties from two different datasets:
+
+- **MAGPHYS Dataset**: 21 Panchromatic GAMA Dataset containing flux measurements across multiple wavelengths
+- **MPA-JHU Dataset**: SDSS+AllWISE dataset with photometric measurements
+
+## Features
+
+- Multiple ML model implementations:
+  - XGBoost
+  - CatBoost  
+  - Artificial Neural Networks (ANN)
+  - Wide & Deep Neural Networks (WDNN)
+- Automated hyperparameter tuning using Optuna
+- Model training pipeline
+- Performance visualization and metrics tracking
+- YAML-based configuration system
+
+## Project Structure
+
+```
+├── configs/                  # Configuration files
+│   ├── magphys_config.yaml  # MAGPHYS dataset config
+│   └── mpa_jhu_config.yaml  # MPA-JHU dataset config
+├── data/
+│   ├── input/               # Input datasets
+│   └── output/              # Model outputs and results
+├── src/
+│   ├── data_loader.py      # Data loading utilities
+│   ├── models.py           # ML model implementations
+│   ├── training.py         # Training pipeline
+│   ├── tuning.py          # Hyperparameter tuning
+│   └── utils.py           # Helper functions
+├── main.py                 # Main execution script
+└── requirements.txt        # Project dependencies
+```
+
+## Installation
+
+1. Clone this repository
+2. Install dependencies:
+```sh
+pip install -r requirements.txt
+```
+
+## Usage
+
+The pipeline can be run in two modes:
+
+1. Hyperparameter tuning:
+```sh
+python main.py tune configs/magphys_config.yaml [model(s)]
+```
+
+2. Model training:
+```sh
+python main.py train configs/mpa_jhu_config.yaml [model(s)]
+```
+
+Where `[model(s)]` can be one or more of: `xgboost`, `catboost`, `ann`, `wdnn`
+
+## Configuration
+
+The project uses YAML configuration files to specify:
+- Dataset paths and properties
+- Feature and target columns
+- Model parameters
+- Training parameters
+- Hyperparameter tuning settings
+
+Example configs are provided in the `configs/` directory.
+
+## Output
+
+The pipeline generates:
+- Trained model files
+- Learning curves
+- Prediction visualizations
+- Detailed evaluation metrics including:
+  - RMSE (Root Mean Square Error)
+  - NRMSE (Normalized RMSE)
+  - MAE (Mean Absolute Error)
+  - R² score
+  - Additional statistical metrics
+
+Results are saved in timestamped directories under `data/output/`.
+
+## Dependencies
+
+Main dependencies include:
+- TensorFlow
+- XGBoost
+- CatBoost
+- scikit-learn
+- Optuna
+- NumPy
+- Pandas
+- Matplotlib
+
+See `requirements.txt` for complete list and versions.

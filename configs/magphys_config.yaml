@@ -1,0 +1,116 @@
+project_name: 21 Panchromatic GAMA Dataset
+label: MAGPHYS
+csv_path: ./data/input/magphys.csv
+output_dir: ./data/output/magphys
+feature_columns:
+- Z
+- FUV_flux
+- NUV_flux
+- u_flux
+- g_flux
+- r_flux
+- i_flux
+- z_flux
+- X_flux
+- Y_flux
+- J_flux
+- H_flux
+- K_flux
+- W1_flux
+- W2_flux
+- W3_flux
+- W4_flux
+- P100_flux
+- P160_flux
+- S250_flux
+- S350_flux
+- S500_flux
+target_columns:
+- SFR_0_1Gyr_percentile50
+- mass_stellar_percentile50
+scaler_cls: StandardScaler
+models:
+- xgboost
+val_split: 0.2
+k_fold: 10
+tuning:
+  n_trials: 50
+  storage_db: sqlite:///magphys.db
+targets:
+  SFR_0_1Gyr_percentile50:
+    ann:
+      layers:
+      - 128
+      - 48
+      - 112
+      - 32
+      - 48
+      activation: relu
+      regularizer: l1
+      optimizer: adam
+      learning_rate: 0.0006593261627622872
+      batch_size: 128
+      epochs: 600
+      patience: 80
+    wdnn:
+      layers:
+      - 64
+      - 64
+      - 80
+      - 64
+      activation: relu
+      regularizer: l1
+      optimizer: adam
+      learning_rate: 0.001014754247313394
+      batch_size: 192
+      epochs: 900
+      patience: 80
+    xgboost:
+      eta: 0.042
+      n_estimators: 1000
+      max_depth: 6
+      reg_lambda: 0.8335
+      reg_alpha: 0.7816000000000001
+      colsample_bytree: 0.62
+    catboost:
+      iterations: 2000
+      depth: 6
+      learning_rate: 0.07351719163027079
+  mass_stellar_percentile50:
+    ann:
+      layers:
+      - 96
+      - 96
+      - 112
+      - 48
+      activation: relu
+      regularizer: null
+      optimizer: adam
+      learning_rate: 0.001205671828009621
+      batch_size: 64
+      epochs: 400
+      patience: 60
+    wdnn:
+      layers:
+      - 128
+      - 48
+      - 112
+      - 64
+      activation: relu
+      regularizer: null
+      optimizer: adam
+      learning_rate: 0.0015478594550778974
+      batch_size: 64
+      epochs: 500
+      patience: 60
+    xgboost:
+      eta: 0.053000000000000005
+      n_estimators: 1000
+      max_depth: 6
+      reg_lambda: 0.217
+      reg_alpha: 0.5134000000000001
+      colsample_bytree: 0.5
+    catboost:
+      iterations: 1900
+      depth: 5
+      learning_rate: 0.07435761347070234

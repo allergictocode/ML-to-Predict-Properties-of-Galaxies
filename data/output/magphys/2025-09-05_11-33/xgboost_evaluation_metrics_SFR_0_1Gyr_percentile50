@@ -1,0 +1,23 @@
+Target        : SFR_0_1Gyr_percentile50
+Training time : 7.973246335983276 s
+
+--- Model & Training Parameters ---
+Scaler        : StandardScaler
+Model         : xgboost
+Number of estimators : 1000
+Max depth            : 6
+Learning rate        : 0.042
+L2 regularization    : 0.8335
+L1 regularization    : 0.7816000000000001
+Colsample by tree    : 0.62
+
+--- Evaluation Metrics ---
+RMSE          : 0.15742850778298706
+NRMSE         : 0.03405316170437072
+MAE           : 0.0905184609366053
+Bias          : -0.0030554098092747924
+Sigma         : SFR_0_1Gyr_percentile50    0.157399
+dtype: float64
+Eta           : SFR_0_1Gyr_percentile50    0.016533
+dtype: float64
+R2            : 0.930355172707174

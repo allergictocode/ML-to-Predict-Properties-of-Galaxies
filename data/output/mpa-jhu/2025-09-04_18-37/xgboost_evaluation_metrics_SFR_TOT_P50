@@ -1,0 +1,23 @@
+Target        : SFR_TOT_P50
+Training time : 69.27836966514587 s
+
+--- Model & Training Parameters ---
+Scaler        : RobustScaler
+Model         : xgboost
+Number of estimators : 800
+Max depth            : 10
+Learning rate        : 0.032
+L2 regularization    : 0.1307
+L1 regularization    : 0.6787000000000001
+Colsample by tree    : 0.8500000000000001
+
+--- Evaluation Metrics ---
+RMSE          : 0.3273663391823942
+NRMSE         : 0.0468386085679525
+MAE           : 0.2307638785621061
+Bias          : -0.00034682963991850663
+Sigma         : SFR_TOT_P50    0.327366
+dtype: float64
+Eta           : SFR_TOT_P50    0.015056
+dtype: float64
+R2            : 0.8290179055278064
